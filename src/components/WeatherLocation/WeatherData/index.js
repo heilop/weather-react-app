@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import WeatherExtraInfo from './WeatherExtraInfo';
 import WeatherTemperature from './WeatherTemperature';
 import PropTypes from 'prop-types';
@@ -8,20 +8,42 @@ import {
 
 import './styles.css';
 
-const WeatherData = ({data: {temperature, weatherState, humidity, wind}}) => (
-  // Using destruting with constants.
-  // const {temperature, weatherState, humidity, wind} = data;
-    <div className = 'weatherDataWrapper'>
-      <WeatherTemperature
-        temperature={temperature}
-        weatherState={weatherState}
-      />
-      <WeatherExtraInfo
-        humidity = {humidity}
-        wind = {wind}
-      />
-    </div>
-  );
+class WeatherData extends React.Component {
+  render () {
+    const {temperature, weatherState, humidity, wind} = this.props.data;
+    return (
+      // Using destruting with constants.
+      // const {temperature, weatherState, humidity, wind} = data;
+      <div className = 'weatherDataWrapper'>
+        <WeatherTemperature
+          temperature={temperature}
+          weatherState={weatherState}
+        />
+        <WeatherExtraInfo
+          humidity = {humidity}
+          wind = {wind}
+        />
+      </div>
+    );
+  }
+}
+
+// export default ;
+//
+// const WeatherData = () => (
+//   // Using destruting with constants.
+//   // const {temperature, weatherState, humidity, wind} = data;
+//     <div className = 'weatherDataWrapper'>
+//       <WeatherTemperature
+//         temperature={temperature}
+//         weatherState={weatherState}
+//       />
+//       <WeatherExtraInfo
+//         humidity = {humidity}
+//         wind = {wind}
+//       />
+//     </div>
+//   );
 
 WeatherData.propTypes = {
   data : PropTypes.shape({
