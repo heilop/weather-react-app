@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import './styles.css';
@@ -13,12 +13,15 @@ const data = {
   wind: '10 m/s',
 };
 
-const WeatherLocation = () => (
-  <div className = 'weatherLocationWrapper'>
-    <Location city={'Lima'}></Location>
-    <WeatherData data={data}></WeatherData>
-  </div>
-
-);
+class WeatherLocation extends React.Component {
+  render () {
+    return (
+      <div className = 'weatherLocationWrapper'>
+        <Location city={'Lima'}></Location>
+        <WeatherData data={data}></WeatherData>
+      </div>
+    );
+  }
+}
 
 export default WeatherLocation;
