@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Location = (props) => {
   // Destructuring props.
@@ -11,5 +12,9 @@ const Location = (props) => {
     </div>
   );
 };
+
+Location.PropTypes = {
+  city:PropTypes.string.isRequired,
+}
 
 export default Location;
