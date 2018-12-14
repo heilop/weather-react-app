@@ -5,27 +5,36 @@ import { api_weather } from './../../constants/api_url';
 import WeatherData from './WeatherData';
 import './styles.css';
 
-import {
-  SUN,
-  WINDY,
-} from './../../constants/weathers';
-
-const data = {
-  temperature: 5,
-  weatherState: SUN,
-  humidity: 25,
-  wind: '20 m/s',
-};
-
 class WeatherLocation extends React.Component {
   constructor() {
     super();
     // Set state from constructor use "this.state".
     this.state = {
       city: 'Lima',
-      data: data,
+      data: null,
     };
+    //console.log('Construct');
   }
+
+  // Get data before render.
+  componentDidMount() {
+    console.log('componentDidMount');
+    this.handleUpdateClick();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate');
+  }
+  /******* START DOT NOT USE (Only to learn) *****/
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('componentWillUpdate');
+  }
+  /***** END DOT NOT USE *****/
+  
 
   handleUpdateClick = () => {
     fetch(api_weather).then(resolve => {
@@ -33,8 +42,8 @@ class WeatherLocation extends React.Component {
     }).then(data => {
       const newWeather = transformWeather(data);
 
-      console.log(newWeather);
-      debugger;
+      // console.log(newWeather);
+      // debugger;
       // Set state anywhere (out constructor) use "this.setState".
       this.setState({
           data: newWeather,
@@ -43,12 +52,13 @@ class WeatherLocation extends React.Component {
   }
   render () {
     // Destruting data from this.state.
-    const {city, data} = this.state;
+    const { city, data } = this.state;
     return (
       <div className = 'weatherLocationWrapper'>
         <Location city={city}></Location>
-        <WeatherData data={data}></WeatherData>
-        <button onClick={this.handleUpdateClick}>Update</button>
+        {
+          data ? <WeatherData data={data}></WeatherData> : 'Loading...'
+        }
       </div>
     );
   }
