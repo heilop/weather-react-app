@@ -7,7 +7,7 @@ import Location from './Location';
 import WeatherData from './WeatherData';
 import './styles.css';
 
-class WeatherLocation extends React.Component {
+class WeatherLocation extends Component {
   constructor(props) {
     super(props);
     const { city } = props;
