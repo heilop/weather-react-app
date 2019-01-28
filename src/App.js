@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Grid, Col, Row } from 'react-flexbox-grid';
-import LocationList from './components/WeatherLocation/LocationList';
+import LocationList from './components/LocationList';
 import './App.css';
 
 const cities = [
@@ -39,9 +39,9 @@ class App extends Component {
             </LocationList>
           </Col>
           <Col xs={12} md={6}>
-            <div className='details'>
-            
-            </div>
+            <Paper elevation={4}>
+              <div className='details'></div>
+            </Paper>
           </Col>
         </Row>
       </Grid>
