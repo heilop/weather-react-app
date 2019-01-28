@@ -33,3 +33,9 @@ h1 {
     transform: rotate(360deg);
   }
 }
+
+.details {
+  background-color: #999999;
+  height: 100vh;
+  widows: 100%;
+}
