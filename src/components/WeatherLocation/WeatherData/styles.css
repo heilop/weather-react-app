@@ -8,6 +8,9 @@
   padding: 5px;
   box-sizing: border-box;
 }
+.locationList .weatherDataWrapper {
+  cursor: pointer;
+}
 
 .weatherExtraInfoWrapper {
   width: 40%;
@@ -35,7 +38,7 @@
 
 .extraInfoText {
   display: block;
-  color: #535C5;
+  color: #535C;
   font-size: 16px;
   font-weight: bold;
 }
