@@ -33,6 +33,18 @@ class ForecastExtended extends Component {
 
   componentDidMount() {
     // Fetch or axios.
+    this.updateCity(this.props.city);
+  }
+
+  // Check next properties.
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.city !== this.props.city) {
+      this.setState({ forecastData: null });
+      this.updateCity(nextProps.city);
+    }
+  }
+  
+  updateCity = city => {
     const url_forecast = `${url}?q=${this.props.city}&appid=${api_key}`;
 
     fetch(url_forecast).then(
@@ -85,4 +97,4 @@ ForecastExtended.proptypes = {
   city: PropTypes.string.isRequired,
 }
 
-export default ForecastExtended;  
+export default ForecastExtended;
