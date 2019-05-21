@@ -4,9 +4,10 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Grid, Col, Row } from 'react-flexbox-grid';
-import { createStore } from 'redux';
 import LocationList from './components/LocationList';
 import ForecastExtended from './components/ForecastExtended';
+import { setCity } from './actions';
+import { store } from './store';
 import './App.css';
 
 const cities = [
@@ -16,9 +17,6 @@ const cities = [
   'Ciudad de México, mx',
 ];
 
-const store  = createStore( () => {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
-const setCity = value => ({ type: `setCity`, value });
 class App extends Component {
   constructor() {
     super();
