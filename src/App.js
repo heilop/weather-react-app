@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Grid, Col, Row } from 'react-flexbox-grid';
 import PropTypes from 'prop-types';
-import LocationList from './components/LocationList';
+import LocationListContainer from './containers/LocationListContainer';
 import ForecastExtended from './components/ForecastExtended';
 import { setCity } from './actions';
 import './App.css';
@@ -25,11 +25,7 @@ class App extends Component {
       city: null
     };
   }
-  handleSelectionLocation = city => {
-    this.setState( { city });
-    console.log(`handleSelectionLocation => ${city}`);
-    this.props.setCity(city);
-  }
+
   render() {
     const { city } = this.state;
     return (
@@ -45,11 +41,7 @@ class App extends Component {
         </Row>
         <Row>
           <Col xs={12} md={6}>
-            <LocationList 
-              cities = { cities }
-              onSelectedLocation = {this.handleSelectionLocation}
-            >
-            </LocationList>
+            <LocationListContainer cities = { cities }></LocationListContainer>
           </Col>
           <Col xs={12} md={6}>
             <Paper elevation={4}>
@@ -68,12 +60,4 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  setCity: PropTypes.func.isRequired,
-}
-
-const mapDispatchToPropsActions = dispatch => ({
-  setCity: value  => dispatch(setCity(value))
-});
-
-export default connect(null, mapDispatchToPropsActions)(App);
+export default (App);
