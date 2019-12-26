@@ -43,7 +43,7 @@ class ForecastExtended extends Component {
       this.updateCity(nextProps.city);
     }
   }
-  
+
   updateCity = city => {
     const url_forecast = `${url}?q=${this.props.city}&appid=${api_key}`;
 
@@ -51,9 +51,7 @@ class ForecastExtended extends Component {
       data => (data.json())
     ).then(
       weather_data => {
-        console.log(weather_data);
         const forecastData = transformForecast(weather_data);
-        console.log(forecastData);
         this.setState({ forecastData });
       }
     )
@@ -61,11 +59,11 @@ class ForecastExtended extends Component {
 
   renderForecastItemDays(forecastData) {
     // return "Render Items";
-    return forecastData.map( 
+    return forecastData.map(
       forecast => (
-        <ForecastItem 
+        <ForecastItem
           key = {`${forecast.weekDay}${forecast.hour}`}
-          weekDay={ forecast.weekDay } 
+          weekDay={ forecast.weekDay }
           hour={ forecast.hour }
           data={ forecast.data }>
         </ForecastItem>
@@ -83,10 +81,10 @@ class ForecastExtended extends Component {
     return(
       <div>
         <h2 className='forecast-title'>Forecast Extended for {city}</h2>
-        { 
+        {
           forecastData ?
             this.renderForecastItemDays(forecastData) :
-            this.renderProgress()   
+            this.renderProgress()
         }
       </div>
     );
