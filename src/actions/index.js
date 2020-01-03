@@ -18,11 +18,19 @@ const api_key = '2f06324e6cdc0972675772513dfaab1a';
 const url = 'http://api.openweathermap.org/data/2.5/forecast';
 
 export const setSelectedCity = payload => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     const url_forecast = `${url}?q=${payload}&appid=${api_key}`;
     // Enable state for search indicator.
     dispatch(setCity(payload));
 
+    const state = getState();
+    const date = state.cities[payload] && state.cities[payload].setForecastDataDate;
+    console.log(date);
+    const now = new Date();
+
+    if (date && (now - date) < 1 * 60 * 1000) {
+      return;
+    }
     return fetch(url_forecast).then(
       data => (data.json())
     ).then(
@@ -35,22 +43,6 @@ export const setSelectedCity = payload => {
     )
   };
 }
-
-  // handleUpdateClick = () => {
-  //   const api_weather = getUrlWeatherByCity(this.state.city);
-  //   fetch(api_weather).then(resolve => {
-  //     return resolve.json();
-  //   }).then(data => {
-  //     const newWeather = transformWeather(data);
-
-  //     // console.log(newWeather);
-  //     // debugger;
-  //     // Set state anywhere (out constructor) use "this.setState".
-  //     this.setState({
-  //       data: newWeather,
-  //     });
-  //   });
-  // }
 
 export const setWeather = payload => {
   return dispatch => {
