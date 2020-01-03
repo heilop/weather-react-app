@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import WeatherExtraInfo from './WeatherExtraInfo';
 import WeatherTemperature from './WeatherTemperature';
 import PropTypes from 'prop-types';
-import {
-  SUN,
-} from './../../../constants/weathers';
 
 import './styles.css';
 
-class WeatherData extends React.Component {
-  render () {
-    const {temperature, weatherState, humidity, wind} = this.props.data;
+const WeatherData = ({ data }) => {
+    const { temperature, weatherState, humidity, wind } = data;
     return (
       // Using destruting with constants.
       // const {temperature, weatherState, humidity, wind} = data;
@@ -25,8 +21,7 @@ class WeatherData extends React.Component {
         />
       </div>
     );
-  }
-}
+};
 
 // export default ;
 //
